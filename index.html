@@ -1184,39 +1184,47 @@ footer{background:#050609;color:var(--ink);padding:72px 0 28px;border-top:1px so
 (function(){
 'use strict';
 
+// Preserve GitHub Pages subdirectory base path even after pushState to '/'
+var BASE_PATH = (function(){
+  var p = window.location.pathname;
+  p = p.replace(/\/[^\/]*$/, '/');
+  return p;
+})();
+
+
 var PRODUCTS = [
  {id:'p1',name:'Resistance Band Loop Set',cat:'Training',sub:'Five bands, stacked resistance.',price:7.99,
   desc:'Five loop bands covering light to heavy resistance for mobility and strength work.',sku:'001',short:'RESIST\nBANDS',bd:'5 PCS · LIGHT TO HEAVY',
   details:'<strong>Type:</strong> Loop resistance bands<br><br><strong>Set:</strong> 5 bands (extra-light, light, medium, heavy, extra-heavy)<br><br><strong>Package Includes:</strong> 5x Bands, mesh carry bag<br><br><strong>Care Instructions:</strong> Keep away from sharp edges. Air dry after use.<br><br><strong>Best For:</strong> Warm-ups, glute activation, rehab, travel training.',
-  img:'imgs/p1.png'},
+  img:BASE_PATH+'imgs/p1.png'},
  {id:'p2',name:'Fitness Tracker Smart Watch',cat:'Tracking',sub:'All-day metrics, sport ready.',price:14.99,
   desc:'Lightweight fitness tracker with heart rate, steps, sleep and workout modes.',sku:'002',short:'SMART\nWATCH',bd:'AMOLED · IP68',
   details:'<strong>Type:</strong> Fitness smart watch<br><br><strong>Features:</strong> HR, steps, sleep, multi-sport modes, notifications<br><br><strong>Package Includes:</strong> 1x Tracker, 1x Charging cable, quick start guide<br><br><strong>Care Instructions:</strong> Rinse sensor area after sweat. Charge via included cable only.<br><br><strong>Best For:</strong> Daily tracking, gym sessions, running, cycling.',
-  img:'imgs/p2.png'},
+  img:BASE_PATH+'imgs/p2.png'},
  {id:'p3',name:'Adjustable Weighted Jump Rope',cat:'Cardio',sub:'Weighted handles, smooth bearings.',price:24.99,
   desc:'Adjustable cable jump rope with weighted handles and ball-bearing rotation.',sku:'003',short:'JUMP\nROPE',bd:'ADJUSTABLE · WEIGHTED',
   details:'<strong>Material:</strong> Steel cable, weighted alloy handles<br><br><strong>Length:</strong> Adjustable up to 3 m<br><br><strong>Package Includes:</strong> 1x Jump rope, 2x Handle weights, drawstring bag<br><br><strong>Care Instructions:</strong> Wipe cable after use. Store coiled.<br><br><strong>Best For:</strong> HIIT, cardio conditioning, boxing warm-ups.',
-  img:'imgs/p3.png'},
+  img:BASE_PATH+'imgs/p3.png'},
  {id:'p4',name:'Foam Massage Roller',cat:'Recovery',sub:'Textured grid, high density.',price:29.99,
   desc:'High-density textured foam roller for trigger-point release and mobility work.',sku:'004',short:'FOAM\nROLLER',bd:'33 CM · GRID',
   details:'<strong>Material:</strong> High-density EVA foam with textured grid<br><br><strong>Dimensions:</strong> 33 x 14 cm<br><br><strong>Package Includes:</strong> 1x Foam roller, guide card<br><br><strong>Care Instructions:</strong> Wipe with damp cloth. Air dry.<br><br><strong>Best For:</strong> Pre-workout mobility, post-workout recovery, myofascial release.',
-  img:'imgs/p4.png'},
+  img:BASE_PATH+'imgs/p4.png'},
  {id:'p5',name:'Hex Dumbbells, Pair',cat:'Strength',sub:'Rubberized coating, steel core.',price:39.99,
   desc:'Pair of hex dumbbells with rubberized coating and contoured grip for home training.',sku:'005',short:'HEX\nDUMBBELLS',bd:'PAIR · RUBBERIZED',
   details:'<strong>Material:</strong> Cast iron core with rubberized coating<br><br><strong>Handle:</strong> Chrome knurled grip<br><br><strong>Package Includes:</strong> 2x Hex dumbbells<br><br><strong>Care Instructions:</strong> Wipe rubber after use. Store on dry surface.<br><br><strong>Best For:</strong> Home strength training, upper body, goblet squats, lunges.',
-  img:'imgs/p5.png'},
+  img:BASE_PATH+'imgs/p5.png'},
  {id:'p6',name:'Premium Yoga Mat',cat:'Mobility',sub:'Non-slip, textured grip.',price:44.99,
   desc:'Thick non-slip yoga mat with textured grip for yoga, pilates and stretching.',sku:'006',short:'YOGA\nMAT',bd:'6 MM · NON-SLIP',
   details:'<strong>Material:</strong> Closed-cell TPE, 6 mm thick<br><br><strong>Dimensions:</strong> 183 x 61 cm<br><br><strong>Package Includes:</strong> 1x Yoga mat, 1x Carry strap<br><br><strong>Care Instructions:</strong> Wipe with mild soap and water. Air dry flat.<br><br><strong>Best For:</strong> Yoga, pilates, stretching, floor workouts.',
-  img:'imgs/p6.png'},
+  img:BASE_PATH+'imgs/p6.png'},
  {id:'p7',name:'Pull-Up Assistance Band Set',cat:'Training',sub:'Three bands, progressive assist.',price:49.99,
   desc:'Three heavy-duty power bands for pull-up assistance and strength training.',sku:'007',short:'POWER\nBANDS',bd:'3 PCS · PROGRESSIVE',
   details:'<strong>Type:</strong> Power assistance bands<br><br><strong>Set:</strong> 3 bands (light, medium, heavy)<br><br><strong>Package Includes:</strong> 3x Power bands, door anchor, carry bag<br><br><strong>Care Instructions:</strong> Inspect for nicks before each use. Store away from sunlight.<br><br><strong>Best For:</strong> Pull-up progression, mobility, powerlifting accessory work.',
-  img:'imgs/p7.png'},
+  img:BASE_PATH+'imgs/p7.png'},
  {id:'p8',name:'Electric Massage Gun + Case',cat:'Recovery',sub:'Five attachments, portable case.',price:59.99,
   desc:'Compact percussion massage gun with five attachments in a portable carry case.',sku:'008',short:'MASSAGE\nGUN',bd:'5 ATTACHMENTS',
   details:'<strong>Type:</strong> Percussion massage gun<br><br><strong>Includes:</strong> 5 interchangeable attachments, USB-C charging<br><br><strong>Package Includes:</strong> 1x Massage gun, 5x Heads, 1x USB-C cable, hard carry case<br><br><strong>Care Instructions:</strong> Wipe exterior. Do not submerge.<br><br><strong>Best For:</strong> Post-workout recovery, muscle soreness, travel kit.',
-  img:'imgs/p8.png'}
+  img:BASE_PATH+'imgs/p8.png'}
 ];
 
 var state = {cart:[], currentProduct:'p1', qty:1};
